@@ -7,7 +7,7 @@ def compute_force(m1: float, m2: float,
                   G: float) -> Tuple[float]:
     """
     Function equation explanation:
-        Gravitational Force = G * m1 * m2 * |d| / d³
+        Gravitational Force = G * m1 * m2 * d / |d|³
         G = Gravitational constant (6.6743 * 10⁻¹¹)
         m1 = mass of first body
         m2 = mass of second body
