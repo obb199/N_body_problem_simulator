@@ -1,5 +1,5 @@
 import numpy as np
-from utils import distance_computation
+from utils import compute_distance
 
 
 class Body:
@@ -16,11 +16,32 @@ class Body:
         self.acceleration_y = 0
         self.force_x = 0
         self.force_y = 0
-        self.kinematic_energy = mass * (vel_x**2 + vel_y**2) / 2
-        self.linear_momentum = mass * (vel_x**2 + vel_y**2) ** 0.5
-        self.rotational_momentum = m * (pos_x**2 + pos_y**2) ** 0.5 * (vel_x**2 + vel_y**2) ** 0.5
 
     @property
     def position(self):
         return np.array([self.position_x,
                          self.position_y])
+
+    @property
+    def kinematic_energy(self):
+        return self.mass * (self.velocity_x**2 + self.velocity_y**2) / 2
+
+    @property
+    def linear_momentum(self):
+        return self.mass * (self.velocity_x ** 2 + self.velocity_y ** 2) ** 0.5
+
+    @property
+    def rotational_momentum(self, referential_position=None):
+        if referential_position is None:
+            return self.linear_momentum * (self.position_x**2 + self.position_y**2) ** 0.5
+
+    def dict_infos(self):
+        infos = {'mass': self.mass,
+                 'position': (self.position_x, self.position_y),
+                 'velocity': (self.velocity_x, self.velocity_y),
+                 'acceleration': (self.acceleration_x, self.acceleration_y),
+                 'force': (self.force_x, self.force_y)}
+
+        return infos
+
+

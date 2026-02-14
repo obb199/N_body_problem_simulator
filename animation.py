@@ -4,7 +4,6 @@ from matplotlib.animation import FuncAnimation
 import numpy as np
 from body_struct import Body
 from dynamic_computation import *
-from energy_computation import *
 
 matplotlib.use("TkAgg")
 
@@ -12,10 +11,10 @@ plt.style.use("dark_background")
 G = 1
 dt = 0.003
 b1 = Body(5000, 0, 0, 0, 0)
-b2 = Body(25, 0, 10, 3, 3)
-b3 = Body(100, 3, -10, 8, 8)
+b2 = Body(10, -4, -4, 2, 3)
+b3 = Body(10, 3, -10, 8, 8)
 b4 = Body(5, 8, -5, 4, 1)
-bodies = [b1, b3]
+bodies = [b1, b2, b3]
 
 for b in bodies:
     b.traj_x = []
@@ -34,8 +33,7 @@ ax.set_title("Simulação N-corpos (Gravitação Newtoniana)")
 sizes = [np.sqrt(b.mass) * 5 for b in bodies]
 
 initial_positions = np.array([[b.position_x, b.position_y] for b in bodies])
-colors = ["yellow", "red", "blue", "green"]
-colors = ["yellow", "red"]
+colors = ["yellow", "red", "green"]
 
 scat = ax.scatter(initial_positions[:, 0], initial_positions[:, 1], s=sizes, c=colors)
 
