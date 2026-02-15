@@ -1,12 +1,10 @@
-from typing import Tuple, Any
-
 import numpy as np
 from utils import compute_distance
 
 
 def compute_force(m1: float, m2: float,
                   p1: list[float], p2: list[float],
-                  G: float) -> tuple[float | float]:
+                  G: float) -> tuple[float, float]:
     """
     Function equation explanation:
         Gravitational Force = G * m1 * m2 * d / |d|³

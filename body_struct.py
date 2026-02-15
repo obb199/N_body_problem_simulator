@@ -28,12 +28,14 @@ class Body:
 
     @property
     def linear_momentum(self):
-        return self.mass * (self.velocity_x ** 2 + self.velocity_y ** 2) ** 0.5
+        return np.array([
+            self.mass * self.velocity_x,
+            self.mass * self.velocity_y
+        ])
 
     @property
-    def rotational_momentum(self, referential_position=None):
-        if referential_position is None:
-            return self.linear_momentum * (self.position_x**2 + self.position_y**2) ** 0.5
+    def rotational_momentum(self):
+        return self.mass * (self.position_x * self.velocity_y - self.position_y * self.velocity_x)
 
     def dict_infos(self):
         infos = {'mass': self.mass,
